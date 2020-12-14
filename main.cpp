@@ -79,7 +79,7 @@ Sub Object 5: Seat
         3) seat adjuster
     Name 2 things you can do with the:   Seat
         1) fasten seatbelt
-        2) adjust seat position
+        2) adjust the seat position
 */
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
