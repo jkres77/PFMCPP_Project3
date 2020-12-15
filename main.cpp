@@ -53,59 +53,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) Gym
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of treadmills
+    2) number of barbells
+    3) number of weight benches
+    4) number of protien bars
+    5) stores membership records
 3 things it can do:
-    1)
-    2)
-    3)
+    1) provide excersize equiptment
+    2) provide space to workout
+    3) provide training programs
  */
 
 /*
-Thing 2)
+Thing 2) Gas Station
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) stores gas for pumps
+    2) number of gas pumps
+    3) stores product inventory
+    4) number of candy bars
+    5) number of energy drinks
 3 things it can do:
-    1)
-    2)
-    3)
+    1) provide gas to customer
+    2) charge credit card
+    3) provide parking space
  */
 
 /*
-Thing 3)
+Thing 3) Coat Rack
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) stores amount of  coats
+    2) stores amount of hats
+    3) number of coats on rack
+    4) number of hats on rack
+    5) number of hooks on rack
 3 things it can do:
-    1)
-    2)
-    3)
+    1) mount to wall
+    2) hang hats
+    3) hang coats
  */
 
 /*
-Thing 4)
+Thing 4) Remote Control
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) on/off switch
+    2) contains batteries
+    3) left/right buttons
+    4) up/down buttons
+    5) sits on table
 3 things it can do:
-    1)
-    2)
-    3)
+    1) change channel
+    2) switch mode
+    3) turn tv off
  */
 
 
