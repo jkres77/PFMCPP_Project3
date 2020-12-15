@@ -109,17 +109,17 @@ Thing 4) Remote Control
  */
 
 /*
-Thing 10)
+Thing 10) Mixing Console
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Volume Fader
+    2) Panning Knob
+    3) Power Switch
+    4) Line Input Jack
+    5) Level Meter
 3 things it can do:
-    1)
-    2)
-    3)
+    1) adjust volume
+    2) output to speakers
+    3) indicate level
  */
 
 /*
