@@ -59,7 +59,7 @@ Thing 1) Gym
     2) number of barbells
     3) number of weight benches
     4) number of protien bars
-    5) stores membership records
+    5) membership list
 3 things it can do:
     1) provide excersize equiptment
     2) provide space to workout
@@ -69,9 +69,9 @@ Thing 1) Gym
 /*
 Thing 2) Gas Station
 5 properties:
-    1) stores gas for pumps
+    1) amount of gas for pumps
     2) number of gas pumps
-    3) stores product inventory
+    3) product inventory list
     4) number of candy bars
     5) number of energy drinks
 3 things it can do:
@@ -83,8 +83,8 @@ Thing 2) Gas Station
 /*
 Thing 3) Coat Rack
 5 properties:
-    1) stores amount of  coats
-    2) stores amount of hats
+    1) amount of space on rack
+    2) width of rack
     3) number of coats on rack
     4) number of hats on rack
     5) number of hooks on rack
@@ -101,7 +101,7 @@ Thing 4) Remote Control
     2) contains batteries
     3) left/right buttons
     4) up/down buttons
-    5) sits on table
+    5) weight of object
 3 things it can do:
     1) change channel
     2) switch mode
