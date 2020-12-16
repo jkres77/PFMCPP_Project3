@@ -124,73 +124,73 @@ Thing 4) Remote Control
  */
 
 /*
-Thing 5)
+Thing 5) Channel Strip
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of knobs
+    2) number of faders
+    3) max range of gain knob
+    4) text size used on control labels
+    5) number of inputs
 3 things it can do:
-    1)
-    2)
-    3)
+    1) apply adjustments to channel
+    2) accept input of microphone
+    3) accept input of audio cable
  */
 
 /*
-Thing 6)
+Thing 6) Equalizer
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of bands
+    2) max range of frequency
+    3) color of knobs
+    4) type of filter
+    5) smoothness of control
 3 things it can do:
-    1)
-    2)
-    3)
+    1) boost the bass frequency
+    2) cut the high frequency
+    3) adjust the width of the frequency band
  */
 
 /*
-Thing 7)
+Thing 7) Preamp
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) quality of effect
+    2) number of controls
+    3) amount of gain increase
+    4) line sensitivity
+    5) clipping indicator
 3 things it can do:
-    1)
-    2)
-    3)
+    1) boost signal amplitude 
+    2) trim signal amplitude
+    3) distort overall signal
  */
 
 /*
-Thing 8)
+Thing 8) Master Controls
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) volume control level
+    2) panning control setting
+    3) level meter indicator
+    4) range of master volume in db
+    5) headphone level
 3 things it can do:
-    1)
-    2)
-    3)
+    1) adjust the master volume
+    2) adjust the headphone volume
+    3) indicate overall output level
  */
 
 /*
-Thing 9)
+Thing 9) Aux/Send Section
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of sends
+    2) number of returns
+    3) tape-in activation button
+    4) number of send controls
+    5) mono/stereo option
 3 things it can do:
-    1)
-    2)
-    3)
+    1) send input to external effects
+    2) adjust the send levels
+    3) accept input of audio cable
  */
 
 /*
