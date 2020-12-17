@@ -127,150 +127,6 @@ Thing 1) Gym
     2) provide space to workout
     3) provide training programs
  */
-
-/*
-Thing 2) Gas Station
-5 properties:
-    1) amount of gas for pumps
-    2) number of gas pumps
-    3) product inventory list
-    4) number of candy bars
-    5) number of energy drinks
-3 things it can do:
-    1) provide gas to customer
-    2) charge credit card
-    3) provide parking space
- */
-
-/*
-Thing 3) Coat Rack
-5 properties:
-    1) amount of space on rack
-    2) width of rack
-    3) number of coats on rack
-    4) number of hats on rack
-    5) number of hooks on rack
-3 things it can do:
-    1) mount to wall
-    2) hang hats
-    3) hang coats
- */
-
-/*
-Thing 4) Remote Control
-5 properties:
-    1) on/off switch
-    2) contains batteries
-    3) left/right buttons
-    4) up/down buttons
-    5) weight of object
-3 things it can do:
-    1) change channel
-    2) switch mode
-    3) turn tv off
- */
-
-/*
-Thing 5) Channel Strip
-5 properties:
-    1) number of knobs
-    2) number of faders
-    3) max range of gain knob
-    4) text size used on control labels
-    5) number of inputs
-3 things it can do:
-    1) apply adjustments to channel
-    2) accept input of microphone
-    3) accept input of audio cable
- */
-
-/*
-Thing 6) Equalizer
-5 properties:
-    1) number of bands
-    2) max range of frequency
-    3) color of knobs
-    4) type of filter
-    5) smoothness of control
-3 things it can do:
-    1) boost the bass frequency
-    2) cut the high frequency
-    3) adjust the width of the frequency band
- */
-
-/*
-Thing 7) Preamp
-5 properties:
-    1) quality of effect
-    2) number of controls
-    3) amount of gain increase
-    4) line sensitivity
-    5) clipping indicator
-3 things it can do:
-    1) boost signal amplitude 
-    2) trim signal amplitude
-    3) distort overall signal
- */
-
-/*
-Thing 8) Master Controls
-5 properties:
-    1) volume control level
-    2) panning control setting
-    3) level meter indicator
-    4) range of master volume in db
-    5) headphone level
-3 things it can do:
-    1) adjust the master volume
-    2) adjust the headphone volume
-    3) indicate overall output level
- */
-
-/*
-Thing 9) Aux/Send Section
-5 properties:
-    1) number of sends
-    2) number of returns
-    3) tape-in activation button
-    4) number of send controls
-    5) mono/stereo option
-3 things it can do:
-    1) send input to external effects
-    2) adjust the send levels
-    3) accept input of audio cable
- */
-
-/*
-Thing 10) Mixing Console
-5 properties:
-    1) Channel Strip
-    2) Equalizer
-    3) Preamp
-    4) Master Controls
-    5) Aux/Send Section
-3 things it can do:
-    1) adjust volume
-    2) output to speakers
-    3) indicate level
- */
-
-/*
- MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
-
- Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
- 
- If you didn't already: 
-    Make a pull request after you make your first commit
-    pin the pull request link and this repl.it link to our DM thread in a single message.
-
- send me a DM to review your pull request when the project is ready for review.
-
- Wait for my code review.
- */
-
-#include <iostream>
-int main()
-{
 struct Gym
 {
     // 1) number of treadmills
@@ -308,7 +164,19 @@ struct Gym
 
     YogaRoom excerciseArea;
 };
-
+/*
+Thing 2) Gas Station
+5 properties:
+    1) amount of gas for pumps
+    2) number of gas pumps
+    3) product inventory list
+    4) number of candy bars
+    5) number of energy drinks
+3 things it can do:
+    1) provide gas to customer
+    2) charge credit card
+    3) provide parking space
+ */
 struct GasStation
 {
     //1) amount of gas for pumps
@@ -325,7 +193,7 @@ struct GasStation
     struct SnackFood 
     {
         std::string snackType = "chips";
-        float price = 2.95;
+        float price = 2.95f;
         double weightInOunces = 0.8;
         int numServings = 2;
         int numCarbsInGrams = 26;
@@ -345,7 +213,19 @@ struct GasStation
     SnackFood bagChips;
     Gym myGym;
 };
-
+/*
+Thing 3) Coat Rack
+5 properties:
+    1) amount of space on rack
+    2) width of rack
+    3) number of coats on rack
+    4) number of hats on rack
+    5) number of hooks on rack
+3 things it can do:
+    1) mount to wall
+    2) hang hats
+    3) hang coats
+ */
 struct CoatRack
 {
     //1) amount of space on rack
@@ -382,7 +262,19 @@ struct CoatRack
     Hat myHat1;
     Hat myHat2;
 };
-
+/*
+Thing 4) Remote Control
+5 properties:
+    1) on/off switch
+    2) contains batteries
+    3) left/right buttons
+    4) up/down buttons
+    5) weight of object
+3 things it can do:
+    1) change channel
+    2) switch mode
+    3) turn tv off
+ */
 struct RemoteControl
 {
     // 1) on/off switch
@@ -403,7 +295,19 @@ struct RemoteControl
     // 3) turn tv off
     int turnOff(bool isButtonDown);
 };
-
+/*
+Thing 5) Channel Strip
+5 properties:
+    1) number of knobs
+    2) number of faders
+    3) max range of gain knob
+    4) text size used on control labels
+    5) number of inputs
+3 things it can do:
+    1) apply adjustments to channel
+    2) accept input of microphone
+    3) accept input of audio cable
+ */
 struct ChannelStrip
 {
     // 1) number of knobs
@@ -424,7 +328,19 @@ struct ChannelStrip
     // 3) accept input of audio cable
     void acceptAudioInput(bool isConnected, bool isMono);
 };
-
+/*
+Thing 6) Equalizer
+5 properties:
+    1) number of bands
+    2) max range of frequency
+    3) color of knobs
+    4) type of filter
+    5) smoothness of control
+3 things it can do:
+    1) boost the bass frequency
+    2) cut the high frequency
+    3) adjust the width of the frequency band
+ */
 struct Equalizer
 {
     // 1) number of bands
@@ -445,7 +361,19 @@ struct Equalizer
     // 3) adjust the width of the frequency band
     double adjustWidth(float level);
 };
-
+/*
+Thing 7) Preamp
+5 properties:
+    1) quality of effect
+    2) number of controls
+    3) amount of gain increase
+    4) line sensitivity
+    5) clipping indicator
+3 things it can do:
+    1) boost signal amplitude 
+    2) trim signal amplitude
+    3) distort overall signal
+ */
 struct Preamp
 {
     // 1) quality of effect
@@ -466,7 +394,19 @@ struct Preamp
     // 3) distort overall signal
     int distortSignal(float level, bool allowClip = false);
 };
-
+/*
+Thing 8) Master Controls
+5 properties:
+    1) volume control level
+    2) panning control setting
+    3) level meter indicator
+    4) range of master volume in db
+    5) headphone level
+3 things it can do:
+    1) adjust the master volume
+    2) adjust the headphone volume
+    3) indicate overall output level
+ */
 struct MasterControls
 {
     // 1) volume control level
@@ -487,7 +427,19 @@ struct MasterControls
     // 3) indicate overall output level
     void indicateLevel(bool isActive = true, bool isClipping = false);
 };
-
+/*
+Thing 9) Aux/Send Section
+5 properties:
+    1) number of sends
+    2) number of returns
+    3) tape-in activation button
+    4) number of send controls
+    5) mono/stereo option
+3 things it can do:
+    1) send input to external effects
+    2) adjust the send levels
+    3) accept input of audio cable
+ */
 struct AuxSend
 {
     // 1) number of sends
@@ -508,7 +460,19 @@ struct AuxSend
     // 3) accept input of audio cable
     void acceptAudioIn(bool isConnected, bool isMono = true);
 };
-
+/*
+Thing 10) Mixing Console
+5 properties:
+    1) Channel Strip
+    2) Equalizer
+    3) Preamp
+    4) Master Controls
+    5) Aux/Send Section
+3 things it can do:
+    1) adjust volume
+    2) output to speakers
+    3) indicate level
+ */
 struct MixingConsole
 {
     // 1) Channel Strip
@@ -529,6 +493,22 @@ struct MixingConsole
     // 3) indicate level
     void indicateLevel(bool isActive, bool isClipping);
 };
+/*
+ MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
+ Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
+ 
+ If you didn't already: 
+    Make a pull request after you make your first commit
+    pin the pull request link and this repl.it link to our DM thread in a single message.
+
+ send me a DM to review your pull request when the project is ready for review.
+
+ Wait for my code review.
+ */
+
+#include <iostream>
+int main()
+{
     std::cout << "good to go!" << std::endl;
 }
