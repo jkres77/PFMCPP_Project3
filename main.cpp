@@ -27,10 +27,10 @@ without errors or warnings before moving on to writing the next UDT.
 
 1) define an empty struct for each of your 10 types. i.e.:
 */
-struct CarWash
-{
+// struct CarWash
+// {
 
-};
+// };
 /*
 2) Copy your 5 properties & 3 actions into the empty struct body.
     - comment them out.
@@ -271,5 +271,264 @@ Thing 10) Mixing Console
 #include <iostream>
 int main()
 {
+struct Gym
+{
+    // 1) number of treadmills
+    int numTreadmills = 9;
+    // 2) number of barbells
+    int numBarbells = 48;
+    //3) number of weight benches
+    int numWeightBenches = 3;
+    // 4) number of protien bars
+    int numProtienBars = 21;
+    // 5) membership list
+    std::string membershipList = "Todd, John, Lisa";
+
+    struct YogaRoom
+    {
+        bool isReserved = false;
+        float floorWidthSqFt = 67.3f;
+        float floorLengthSqFt = 56.21f;
+        int numMembersUsing = 3;
+        int numYogaMats = 12;
+
+        void reserveRoom(int numMembers = 6);
+        void startClass(double time = 3.15, std::string classType = "Pilates");
+        void lighting(bool lightsOn = true);
+    };
+
+    // 1) provide excersize equiptment
+    int provideEquipment(std::string currentMembers);
+
+    // 2) provide space to workout
+    int provideWorkputSpace(YogaRoom yogaRoom, int numMembers);
+
+    //3) provide training programs
+    void provideTrainingProgram(bool isPilates,  bool isYoga, std::string trainerName = "Mark");
+
+    YogaRoom excerciseArea;
+};
+
+struct GasStation
+{
+    //1) amount of gas for pumps
+    double totalGallonsGas = 126.48;
+    //2) number of gas pumps
+    int numGasPumps;
+    //3) product inventory list
+    std::string productList = "cigarettes, beer, whisky, Snickers bars, Red Bull";
+    //4) number of candy bars
+    int numCandyBars = 56;
+    //5) number of energy drinks
+    int numEnergyDrinks = 31;
+
+    struct SnackFood 
+    {
+        std::string snackType = "chips";
+        float price = 2.95;
+        double weightInOunces = 0.8;
+        int numServings = 2;
+        int numCarbsInGrams = 26;
+
+        int provideEnergy(int numCalories, int numGramsProtien);
+        float provideFlavor(bool tastesGood = false);
+        void cureHunger(bool stillHungry = true);
+    };
+
+    //1) provide gas to customer
+    int provideGas(double gallonsPaidFor, bool isDeisel);
+    //2) charge credit card
+    void chargeCard(SnackFood bagChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack);
+    //3) provide parking space
+    void allowParking(bool isCustomer, double carSize, bool canUseForGym);
+
+    SnackFood bagChips;
+    Gym myGym;
+};
+
+struct CoatRack
+{
+    //1) amount of space on rack
+    int rackSpace = 4;
+    //2) width of rack
+    double rackWidth = 24.06;
+    //3) number of coats on rack
+    int numCoats = 6;
+    //4) number of hats on rack
+    int numHats = 2;
+    //5) number of hooks on rack
+    int numHooks = 12;
+
+    struct Hat
+    {
+        int size = 4;
+        float diameter;
+        std::string color = "Red";
+        bool feather = true;
+        std::string material = "Felt";
+
+        void sitOnHead(float howLongToWear, bool doesFit);
+        void containsRabbit(bool isRabbitInHat = true);
+        void provideStyle(bool matchesJacket);
+    };
+
+    //1) mount to wall
+    float mountRack(float wallHeight, bool addedSupport);
+    //2) hang hats
+    void hangHats(Hat myHat1, int hookToHang, int hatsPerHook);
+    //3) hang coats
+    void hangCoats(int coatsToHang, int coatsPerHook);
+
+    Hat myHat1;
+    Hat myHat2;
+};
+
+struct RemoteControl
+{
+    // 1) on/off switch
+    int onOffSwitch = 1;
+    // 2) contains batteries
+    bool containsBatteries = true;
+    // 3) left/right buttons
+    bool leftRightButtons = false;
+    // 4) up/down buttons
+    bool upDownButtons = true;
+    // 5) weight of object
+    float objectWeight = 0.14f;
+
+    // 1) change channel
+    int changeChannel(int channel);
+    // 2) switch mode
+    void switchMode(bool hdmi);
+    // 3) turn tv off
+    int turnOff(bool isButtonDown);
+};
+
+struct ChannelStrip
+{
+    // 1) number of knobs
+    int numKnobs = 4;
+    // 2) number of faders
+    int numFaders = 1;
+    // 3) max range of gain knob
+    float maxGainRange = 12.0f;
+    // 4) text size used on control labels
+    float labelTextSize = 2.4f;
+    // 5) number of inputs
+    int numInputs = 2;
+
+    // 1) apply adjustments to channel
+    void makeAdjustments(float volume, float panning, bool mute);
+    // 2) accept input of microphone
+    void acceptMicInput(bool isConnected);
+    // 3) accept input of audio cable
+    void acceptAudioInput(bool isConnected, bool isMono);
+};
+
+struct Equalizer
+{
+    // 1) number of bands
+    int numBands = 3;
+    // 2) max range of frequency
+    double maxFreqRange = 20000.0;
+    // 3) color of knobs
+    std::string knobColor = "Blue";
+    // 4) type of filter
+    std::string filterType = "lowShelf";
+    // 5) smoothness of control
+    double knobSmoothness = 2.6;
+
+    // 1) boost the bass frequency
+    double boostBass(float level, float freqRange);
+    // 2) cut the high frequency
+    double cutHiFreq(float amountToCut, float freqRange);
+    // 3) adjust the width of the frequency band
+    double adjustWidth(float level);
+};
+
+struct Preamp
+{
+    // 1) quality of effect
+    float quality = 96.0f;
+    // 2) number of controls
+    int numControls = 1;
+    // 3) amount of gain increase
+    float gainIncrease = 24.0f;
+    // 4) line sensitivity
+    double lineSensitivity = 10.0;
+    // 5) clipping indicator
+    bool clippingIndicator = false;
+
+    // 1) boost signal amplitude 
+    int  boostAmp(float level);
+    // 2) trim signal amplitude
+    int trimAmp(float level);
+    // 3) distort overall signal
+    int distortSignal(float level, bool allowClip = false);
+};
+
+struct MasterControls
+{
+    // 1) volume control level
+    double volLevel = 9.2;
+    // 2) panning control setting
+    double panSetting = -3.4;
+    // 3) level meter indicator
+    bool meterActive = true;
+    // 4) range of master volume in db
+    float volRangeInDb = 24.0f;
+    // 5) headphone level
+    double headphoneLevel = 8.2;
+
+    // 1) adjust the master volume
+    void setMainVolume(float level, float maxRange = 24.0f);
+    // 2) adjust the headphone volume
+    void setHeadphoneVolume(float level, bool isActive = true);
+    // 3) indicate overall output level
+    void indicateLevel(bool isActive = true, bool isClipping = false);
+};
+
+struct AuxSend
+{
+    // 1) number of sends
+    int numSends = 3;
+    // 2) number of returns
+    int numReturns = 6;
+    // 3) tape-in activation button
+    bool tapeInButton = true;
+    // 4) number of send controls
+    int numSendKnobs = 8;
+    // 5) mono/stereo option
+    bool monoStereoOption = true;
+
+    // 1) send input to external effects
+    void sendToFx(int numInputs);
+    // 2) adjust the send levels
+    void adjustSendLevel(float levelToSend);
+    // 3) accept input of audio cable
+    void acceptAudioIn(bool isConnected, bool isMono = true);
+};
+
+struct MixingConsole
+{
+    // 1) Channel Strip
+    ChannelStrip channel;
+    // 2) Equalizer
+    Equalizer eq;
+    // 3) Preamp
+    Preamp pre;
+    // 4) Master Controls
+    MasterControls main;
+    // 5) Aux/Send Section
+    AuxSend send;
+
+    // 1) adjust volume
+    double adjustVol(float volLevel, float maxVolRange);
+    // 2) output to speakers
+    int outToSpeakers(int numCables, bool isConnected);
+    // 3) indicate level
+    void indicateLevel(bool isActive, bool isClipping);
+};
+
     std::cout << "good to go!" << std::endl;
 }
