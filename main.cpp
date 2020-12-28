@@ -320,17 +320,17 @@ int GasStation::provideGas(double gallonsPaidFor, bool isDeisel)
     {
         totalGallonsGas = gallonsPaidFor * 1.3;
     }
-    return totalGallonsGas;
+    return static_cast<int>(totalGallonsGas);
 }
 
-void GasStation::chargeCard(SnackFood bagChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack)
+void GasStation::chargeCard(SnackFood myChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack)
 {
     isCredit = true;
     addCarwash = true;
     zipCode = 70448;
     if (canAffordSnack == true)
     {
-        bagChips.cureHunger(true);
+        myChips.cureHunger(true);
     }
 }
 
@@ -367,7 +367,7 @@ struct CoatRack
         void provideStyle(bool matchesJacket);
     };
 
-    float mountRack(float wallHeight, bool addedSupport);
+    float mountRack(double wallHeight, bool addedSupport);
     void hangHats(Hat myHat1, int hookToHang, int hatsPerHook);
     void hangCoats(int coatsToHang, int coatsPerHook);
 
@@ -400,7 +400,7 @@ void CoatRack::Hat::provideStyle(bool matchesJacket)
     }
 }
 
-float CoatRack::mountRack(float wallHeight, bool addedSupport)
+float CoatRack::mountRack(double wallHeight, bool addedSupport)
 {
     if (addedSupport == true)
     {
@@ -409,9 +409,9 @@ float CoatRack::mountRack(float wallHeight, bool addedSupport)
     return 0;
 }
 
-void CoatRack::hangHats(Hat myHat1, int hookToHang, int hatsPerHook)
+void CoatRack::hangHats(Hat thisHat, int hookToHang, int hatsPerHook)
 {
-    myHat1.containsRabbit(false);
+    thisHat.containsRabbit(false);
     hatsPerHook += hookToHang;
 }
 
@@ -515,7 +515,7 @@ struct Equalizer
 
     double boostBass(float level, float freqRange);
     double cutHiFreq(float amountToCut, float freqRange);
-    double adjustWidth(float level);
+    double adjustWidth(double level);
 };
 
 double Equalizer::boostBass(float level, float freqRange)
@@ -533,14 +533,14 @@ double Equalizer::cutHiFreq(float amountToCut, float freqRange)
         freqRange = 1200.0f;
     }
 
-    return freqRange;
+    return static_cast<double>(freqRange);
 }
 
-double Equalizer::adjustWidth(float level)
+double Equalizer::adjustWidth(double level)
 {
-    if (level > 12.0f)
+    if (level > 12.0)
     {
-        level = 12.0f;
+        level = 12.0;
     } 
 
     return level;
@@ -556,26 +556,26 @@ struct Preamp
     double lineSensitivity = 10.0;
     bool clippingIndicator = false;
 
-    int boostAmp(float level);
-    int trimAmp(float level);
-    int distortSignal(float level, bool allowClip = false);
+    float boostAmp(float level);
+    float trimAmp(float level);
+    float distortSignal(float level, bool allowClip = false);
 };
 
-int Preamp::boostAmp(float level)
+float Preamp::boostAmp(float level)
 {
     level *= gainIncrease;
 
     return level;
 }
 
-int Preamp::trimAmp(float level)
+float Preamp::trimAmp(float level)
 {
     level = gainIncrease - 5.0f;
 
     return level;
 }
 
-int Preamp::distortSignal(float level, bool allowClip)
+float Preamp::distortSignal(float level, bool allowClip)
 {
     if (allowClip == false)
     {
@@ -611,7 +611,7 @@ void MasterControls::setMainVolume(float level, float maxRange)
 {
     if (maxRange > 12.0f)
     {
-        level = volLevel - 1.0f;
+        level = static_cast<float>(volLevel) - 1.0f;
     }
 }
 
@@ -619,7 +619,7 @@ void MasterControls::setHeadphoneVolume(float level, bool isActive)
 {
     if (isActive == true)
     {
-        level = volLevel;
+        level = static_cast<float>(volLevel);
     }
 }
 
@@ -688,12 +688,12 @@ struct MixingConsole
     MasterControls main;
     AuxSend send;
 
-    double adjustVol(float volLevel, float maxVolRange);
+    float adjustVol(float volLevel, float maxVolRange);
     int outToSpeakers(int numCables, bool isConnected);
     void indicateLevel(bool isActive, bool isClipping);
 };
 
-double MixingConsole::adjustVol(float volLevel, float maxVolRange)
+float MixingConsole::adjustVol(float volLevel, float maxVolRange)
 {
     volLevel = 4.5f;
 
