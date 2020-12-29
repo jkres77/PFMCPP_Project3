@@ -458,7 +458,7 @@ void RemoteControl::switchMode(bool hdmi)
 
 int RemoteControl::turnOff(bool isButtonDown)
 {
-    if (onOffSwitch == 1 && isButtonDown)
+    if (onOffSwitch && isButtonDown)
     {
         changeChannel(false);
     }
@@ -577,7 +577,7 @@ float Preamp::trimAmp(float level)
 
 float Preamp::distortSignal(float level, bool allowClip)
 {
-    if (allowClip == false)
+    if (!allowClip)
     {
         if (gainIncrease > 24.0f)
         {
