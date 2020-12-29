@@ -458,7 +458,7 @@ void RemoteControl::switchMode(bool hdmi)
 
 int RemoteControl::turnOff(bool isButtonDown)
 {
-    if (onOffSwitch && isButtonDown)
+    if (onOffSwitch == 1 && isButtonDown)
     {
         changeChannel(false);
     }
