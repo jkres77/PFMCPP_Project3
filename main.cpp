@@ -108,8 +108,54 @@ struct CarWash
     You'll need to insert the Person struct from the video in the space below.
  */
 
+ 
+struct Person 
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
 
+    struct Limb 
+    {
+        void stepForward();
+        int stepSize();
+    };
 
+    Limb leftFoot, rightFoot;
+
+    void run(int, bool);
+};
+
+// Person p;
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{    
+    howFast = 5;
+    if (startWithLeftFoot)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else 
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+}
+
+void Person::Limb::stepForward()
+{
+
+}
+
+int Person::Limb::stepSize()
+{
+    return 10;
+}
 
 
  /*
@@ -122,31 +168,12 @@ struct CarWash
  */
 
 
-
-/*
-Thing 1) Gym
-5 properties:
-    1) number of treadmills
-    2) number of barbells
-    3) number of weight benches
-    4) number of protien bars
-    5) membership list
-3 things it can do:
-    1) provide excersize equiptment
-    2) provide space to workout
-    3) provide training programs
- */
 struct Gym
 {
-    // 1) number of treadmills
     int numTreadmills = 9;
-    // 2) number of barbells
     int numBarbells = 48;
-    //3) number of weight benches
     int numWeightBenches = 3;
-    // 4) number of protien bars
     int numProtienBars = 21;
-    // 5) membership list
     std::string membershipList = "Todd, John, Lisa";
 
     struct YogaRoom
@@ -162,41 +189,81 @@ struct Gym
         void lighting(bool lightsOn = true);
     };
 
-    // 1) provide excersize equiptment
     int provideEquipment(std::string currentMembers);
 
-    // 2) provide space to workout
     int provideWorkputSpace(YogaRoom yogaRoom, int numMembers);
 
-    //3) provide training programs
     void provideTrainingProgram(bool isPilates,  bool isYoga, std::string trainerName = "Mark");
 
     YogaRoom excerciseArea;
 };
-/*
-Thing 2) Gas Station
-5 properties:
-    1) amount of gas for pumps
-    2) number of gas pumps
-    3) product inventory list
-    4) number of candy bars
-    5) number of energy drinks
-3 things it can do:
-    1) provide gas to customer
-    2) charge credit card
-    3) provide parking space
- */
+
+void Gym::YogaRoom::reserveRoom(int numMembers)
+{
+    if (numMembers > 6)
+    {
+        isReserved = true;
+        std::cout << "room is full" << std::endl;
+    }
+    else 
+    {
+        isReserved = false;
+        std::cout << "come on in" << std::endl;
+    }
+}
+
+void Gym::YogaRoom::startClass(double time, std::string classType)
+{
+    if (time < 5.30)
+    {
+        std::cout << "Enter class Type:";
+        std::cin >> classType;
+        std::cout << classType << " starts now" << std::endl;
+    }
+}
+
+void Gym::YogaRoom::lighting(bool lightsOn)
+{
+    if (lightsOn)
+    {
+        std::cout << "Please turn off before leaving" << std::endl;
+    }
+}
+
+int Gym::provideEquipment(std::string currentMembers)
+{
+    if (currentMembers != "William")
+    {
+        numBarbells = 10;
+    }
+    return 0;
+}
+
+int Gym::provideWorkputSpace(Gym::YogaRoom yogaRoom, int numMembers = 8)
+{
+    if (yogaRoom.isReserved && numMembers > 10)
+    {
+        std::cout << "Room is full" << std::endl;
+    }
+    return numMembers;
+}
+
+void Gym::provideTrainingProgram(bool isPilates, bool isYoga, std::string trainerName)
+{
+    if (isPilates || isYoga)
+    {
+        std::cin >> trainerName;
+    }
+}
+
+//===============================================================
+
 struct GasStation
 {
-    //1) amount of gas for pumps
     double totalGallonsGas = 126.48;
-    //2) number of gas pumps
     int numGasPumps;
-    //3) product inventory list
     std::string productList = "cigarettes, beer, whisky, Snickers bars, Red Bull";
-    //4) number of candy bars
     int numCandyBars = 56;
-    //5) number of energy drinks
     int numEnergyDrinks = 31;
 
     struct SnackFood 
@@ -212,40 +279,79 @@ struct GasStation
         void cureHunger(bool stillHungry = true);
     };
 
-    //1) provide gas to customer
-    int provideGas(double gallonsPaidFor, bool isDeisel);
-    //2) charge credit card
+    double provideGas(double gallonsPaidFor, bool isDeisel);
     void chargeCard(SnackFood bagChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack);
-    //3) provide parking space
     void allowParking(bool isCustomer, double carSize, bool canUseForGym);
 
     SnackFood bagChips;
     Gym myGym;
 };
-/*
-Thing 3) Coat Rack
-5 properties:
-    1) amount of space on rack
-    2) width of rack
-    3) number of coats on rack
-    4) number of hats on rack
-    5) number of hooks on rack
-3 things it can do:
-    1) mount to wall
-    2) hang hats
-    3) hang coats
- */
+
+int GasStation::SnackFood::provideEnergy(int numCalories, int numGramsProtien)
+{
+    if (snackType == "BeefJerky")
+    {
+        numCalories = 82;
+        numGramsProtien = 7;
+    }
+    return 0;
+}
+
+float GasStation::SnackFood::provideFlavor(bool tastesGood)
+{
+    if (snackType == "DietSoda")
+    {
+        tastesGood = false;
+    }
+    return 0;
+}
+
+void GasStation::SnackFood::cureHunger(bool stillHungry)
+{
+    if (numServings < 2)
+    {
+        stillHungry = true;
+    }
+}
+
+double GasStation::provideGas(double gallonsPaidFor, bool isDeisel)
+{
+    if (isDeisel)
+    {
+        totalGallonsGas = gallonsPaidFor * 1.3;
+    }
+    return totalGallonsGas;
+}
+
+void GasStation::chargeCard(SnackFood myChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack)
+{
+    isCredit = true;
+    addCarwash = true;
+    zipCode = 70448;
+    if (canAffordSnack)
+    {
+        myChips.cureHunger(true);
+    }
+}
+
+void GasStation::allowParking(bool isCustomer, double carSize, bool canUseForGym)
+{
+    carSize = 82.4;
+    if (isCustomer && canUseForGym)
+    {
+        Gym::YogaRoom unusedYogaRoom;
+        myGym.provideWorkputSpace(unusedYogaRoom, 2);
+    }
+}
+
+//==============================================================
+
 struct CoatRack
 {
-    //1) amount of space on rack
     int rackSpace = 4;
-    //2) width of rack
     double rackWidth = 24.06;
-    //3) number of coats on rack
     int numCoats = 6;
-    //4) number of hats on rack
     int numHats = 2;
-    //5) number of hooks on rack
     int numHooks = 12;
 
     struct Hat
@@ -261,247 +367,365 @@ struct CoatRack
         void provideStyle(bool matchesJacket);
     };
 
-    //1) mount to wall
-    float mountRack(float wallHeight, bool addedSupport);
-    //2) hang hats
+    float mountRack(double wallHeight, bool addedSupport);
     void hangHats(Hat myHat1, int hookToHang, int hatsPerHook);
-    //3) hang coats
     void hangCoats(int coatsToHang, int coatsPerHook);
 
     Hat myHat1;
     Hat myHat2;
 };
-/*
-Thing 4) Remote Control
-5 properties:
-    1) on/off switch
-    2) contains batteries
-    3) left/right buttons
-    4) up/down buttons
-    5) weight of object
-3 things it can do:
-    1) change channel
-    2) switch mode
-    3) turn tv off
- */
+
+void CoatRack::Hat::sitOnHead(float howLongToWear, bool doesFit)
+{
+    if (diameter > 2.4f)
+    {
+        doesFit = true;
+    }
+    howLongToWear = 32.5f;
+}
+
+void CoatRack::Hat::containsRabbit(bool isRabbitInHat)
+{
+    if (isRabbitInHat)
+    {
+        sitOnHead(0.0f, false);
+    }
+}
+
+void CoatRack::Hat::provideStyle(bool matchesJacket)
+{
+    if (color == "blue")
+    {
+        matchesJacket = true;
+    }
+}
+
+float CoatRack::mountRack(double wallHeight, bool addedSupport)
+{
+    if (addedSupport)
+    {
+        wallHeight *= rackWidth;
+    }
+    return 0;
+}
+
+void CoatRack::hangHats(Hat thisHat, int hookToHang, int hatsPerHook)
+{
+    thisHat.containsRabbit(false);
+    hatsPerHook += hookToHang;
+}
+
+void CoatRack::hangCoats(int coatsToHang, int coatsPerHook)
+{
+    if (coatsToHang > 6)
+    {
+        coatsPerHook = 2;
+    }
+}
+
+//==========================================================
+
 struct RemoteControl
 {
-    // 1) on/off switch
     int onOffSwitch = 1;
-    // 2) contains batteries
     bool containsBatteries = true;
-    // 3) left/right buttons
     bool leftRightButtons = false;
-    // 4) up/down buttons
     bool upDownButtons = true;
-    // 5) weight of object
     float objectWeight = 0.14f;
 
-    // 1) change channel
     int changeChannel(int channel);
-    // 2) switch mode
     void switchMode(bool hdmi);
-    // 3) turn tv off
     int turnOff(bool isButtonDown);
 };
-/*
-Thing 5) Channel Strip
-5 properties:
-    1) number of knobs
-    2) number of faders
-    3) max range of gain knob
-    4) text size used on control labels
-    5) number of inputs
-3 things it can do:
-    1) apply adjustments to channel
-    2) accept input of microphone
-    3) accept input of audio cable
- */
+
+int RemoteControl::changeChannel(int channel)
+{
+    if (leftRightButtons)
+    {
+        channel += 1;
+    }
+    return channel;
+}
+
+void RemoteControl::switchMode(bool hdmi)
+{
+    if (changeChannel(4))
+    {
+        hdmi = true;
+    }
+    
+}
+
+int RemoteControl::turnOff(bool isButtonDown)
+{
+    if (onOffSwitch == 1 && isButtonDown)
+    {
+        changeChannel(false);
+    }
+    return 0;
+}
+
+//============================================================
+
 struct ChannelStrip
 {
-    // 1) number of knobs
     int numKnobs = 4;
-    // 2) number of faders
     int numFaders = 1;
-    // 3) max range of gain knob
     float maxGainRange = 12.0f;
-    // 4) text size used on control labels
     float labelTextSize = 2.4f;
-    // 5) number of inputs
     int numInputs = 2;
 
-    // 1) apply adjustments to channel
     void makeAdjustments(float volume, float panning, bool mute);
-    // 2) accept input of microphone
     void acceptMicInput(bool isConnected);
-    // 3) accept input of audio cable
     void acceptAudioInput(bool isConnected, bool isMono);
 };
-/*
-Thing 6) Equalizer
-5 properties:
-    1) number of bands
-    2) max range of frequency
-    3) color of knobs
-    4) type of filter
-    5) smoothness of control
-3 things it can do:
-    1) boost the bass frequency
-    2) cut the high frequency
-    3) adjust the width of the frequency band
- */
+
+void ChannelStrip::makeAdjustments(float volume, float panning, bool mute)
+{
+    maxGainRange = 8.0f;
+    volume = 7.3f;
+    panning = -1.2f;
+    mute = false;
+}
+
+void ChannelStrip::acceptMicInput(bool isConnected)
+{
+    if (numInputs == 3)
+    {
+        isConnected = true;
+    }
+}
+
+void ChannelStrip::acceptAudioInput(bool isConnected, bool isMono)
+{
+    acceptMicInput(false);
+    isConnected = true;
+    isMono = false;
+}
+
+//============================================================
+
 struct Equalizer
 {
-    // 1) number of bands
     int numBands = 3;
-    // 2) max range of frequency
     double maxFreqRange = 20000.0;
-    // 3) color of knobs
     std::string knobColor = "Blue";
-    // 4) type of filter
     std::string filterType = "lowShelf";
-    // 5) smoothness of control
     double knobSmoothness = 2.6;
 
-    // 1) boost the bass frequency
     double boostBass(float level, float freqRange);
-    // 2) cut the high frequency
     double cutHiFreq(float amountToCut, float freqRange);
-    // 3) adjust the width of the frequency band
-    double adjustWidth(float level);
+    double adjustWidth(double level);
 };
-/*
-Thing 7) Preamp
-5 properties:
-    1) quality of effect
-    2) number of controls
-    3) amount of gain increase
-    4) line sensitivity
-    5) clipping indicator
-3 things it can do:
-    1) boost signal amplitude 
-    2) trim signal amplitude
-    3) distort overall signal
- */
+
+double Equalizer::boostBass(float level, float freqRange)
+{
+    level = 24.0f;
+    freqRange = 94.0f;
+
+    return 0;
+}
+
+double Equalizer::cutHiFreq(float amountToCut, float freqRange)
+{
+    if (amountToCut > freqRange)
+    {
+        freqRange = 1200.0f;
+    }
+
+    return static_cast<double>(freqRange);
+}
+
+double Equalizer::adjustWidth(double level)
+{
+    if (level > 12.0)
+    {
+        level = 12.0;
+    } 
+
+    return level;
+}
+
+//============================================================
+
 struct Preamp
 {
-    // 1) quality of effect
     float quality = 96.0f;
-    // 2) number of controls
     int numControls = 1;
-    // 3) amount of gain increase
     float gainIncrease = 24.0f;
-    // 4) line sensitivity
     double lineSensitivity = 10.0;
-    // 5) clipping indicator
     bool clippingIndicator = false;
 
-    // 1) boost signal amplitude 
-    int  boostAmp(float level);
-    // 2) trim signal amplitude
-    int trimAmp(float level);
-    // 3) distort overall signal
-    int distortSignal(float level, bool allowClip = false);
+    float boostAmp(float level);
+    float trimAmp(float level);
+    float distortSignal(float level, bool allowClip = false);
 };
-/*
-Thing 8) Master Controls
-5 properties:
-    1) volume control level
-    2) panning control setting
-    3) level meter indicator
-    4) range of master volume in db
-    5) headphone level
-3 things it can do:
-    1) adjust the master volume
-    2) adjust the headphone volume
-    3) indicate overall output level
- */
+
+float Preamp::boostAmp(float level)
+{
+    level *= gainIncrease;
+
+    return level;
+}
+
+float Preamp::trimAmp(float level)
+{
+    level = gainIncrease - 5.0f;
+
+    return level;
+}
+
+float Preamp::distortSignal(float level, bool allowClip)
+{
+    if (!allowClip)
+    {
+        if (gainIncrease > 24.0f)
+        {
+            level = 12.0f;
+        }
+    }
+    else 
+    {
+        level = gainIncrease;
+    }
+
+    return level;
+}
+
+//============================================================
+
 struct MasterControls
 {
-    // 1) volume control level
-    double volLevel = 9.2;
-    // 2) panning control setting
+    float volLevel = 9.2f;
     double panSetting = -3.4;
-    // 3) level meter indicator
     bool meterActive = true;
-    // 4) range of master volume in db
     float volRangeInDb = 24.0f;
-    // 5) headphone level
     double headphoneLevel = 8.2;
 
-    // 1) adjust the master volume
     void setMainVolume(float level, float maxRange = 24.0f);
-    // 2) adjust the headphone volume
     void setHeadphoneVolume(float level, bool isActive = true);
-    // 3) indicate overall output level
     void indicateLevel(bool isActive = true, bool isClipping = false);
 };
-/*
-Thing 9) Aux/Send Section
-5 properties:
-    1) number of sends
-    2) number of returns
-    3) tape-in activation button
-    4) number of send controls
-    5) mono/stereo option
-3 things it can do:
-    1) send input to external effects
-    2) adjust the send levels
-    3) accept input of audio cable
- */
+
+void MasterControls::setMainVolume(float level, float maxRange)
+{
+    if (maxRange > 12.0f)
+    {
+        level = volLevel - 1.0f;
+    }
+}
+
+void MasterControls::setHeadphoneVolume(float level, bool isActive)
+{
+    if (isActive)
+    {
+        level = volLevel;
+    }
+}
+
+void MasterControls::indicateLevel(bool isActive, bool isClipping)
+{
+    if (isActive)
+    {
+        meterActive = true;
+    }
+    
+    if (isClipping)
+    {
+        setMainVolume(12.0f, 24.0f);
+    }
+}
+
+//============================================================
+
 struct AuxSend
 {
-    // 1) number of sends
     int numSends = 3;
-    // 2) number of returns
     int numReturns = 6;
-    // 3) tape-in activation button
     bool tapeInButton = true;
-    // 4) number of send controls
     int numSendKnobs = 8;
-    // 5) mono/stereo option
     bool monoStereoOption = true;
 
-    // 1) send input to external effects
     void sendToFx(int numInputs);
-    // 2) adjust the send levels
     void adjustSendLevel(float levelToSend);
-    // 3) accept input of audio cable
     void acceptAudioIn(bool isConnected, bool isMono = true);
 };
-/*
-Thing 10) Mixing Console
-5 properties:
-    1) Channel Strip
-    2) Equalizer
-    3) Preamp
-    4) Master Controls
-    5) Aux/Send Section
-3 things it can do:
-    1) adjust volume
-    2) output to speakers
-    3) indicate level
- */
+
+void AuxSend::sendToFx(int numInputs)
+{
+    if (numInputs == 1)
+    {
+        monoStereoOption = true;
+    }
+}
+
+void AuxSend::adjustSendLevel(float levelToSend)
+{
+    levelToSend = 4.0f;
+}
+
+void AuxSend::acceptAudioIn(bool isConnected, bool isMono)
+{
+    isMono = monoStereoOption;
+
+    if (monoStereoOption && isConnected)
+    {
+        sendToFx(1);
+    }
+    else
+    {
+        sendToFx(2);
+    }
+}
+
+//============================================================
+
 struct MixingConsole
 {
-    // 1) Channel Strip
     ChannelStrip channel;
-    // 2) Equalizer
     Equalizer eq;
-    // 3) Preamp
     Preamp pre;
-    // 4) Master Controls
     MasterControls main;
-    // 5) Aux/Send Section
     AuxSend send;
 
-    // 1) adjust volume
-    double adjustVol(float volLevel, float maxVolRange);
-    // 2) output to speakers
+    float adjustVol(float volLevel, float maxVolRange);
     int outToSpeakers(int numCables, bool isConnected);
-    // 3) indicate level
     void indicateLevel(bool isActive, bool isClipping);
 };
+
+float MixingConsole::adjustVol(float volLevel, float maxVolRange)
+{
+    volLevel = 4.5f;
+
+    if (main.volRangeInDb == 24.0f)
+    {
+        maxVolRange = 12.0f;
+    }
+
+    return volLevel;
+}
+
+int MixingConsole::outToSpeakers(int numCables, bool isConnected)
+{
+    if (isConnected)
+    {
+        channel.acceptAudioInput(true, true);
+        numCables = 1;
+    }
+
+    return numCables;
+}
+
+void MixingConsole::indicateLevel(bool isActive, bool isClipping)
+{
+    isActive = true;
+
+    if (isClipping)
+    {
+        main.indicateLevel(true, true);
+    }
+}
+
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
