@@ -134,7 +134,7 @@ struct Person
 void Person::run(int howFast, bool startWithLeftFoot)
 {    
     howFast = 5;
-    if (startWithLeftFoot == true)
+    if (startWithLeftFoot)
     {
         leftFoot.stepForward();
         rightFoot.stepForward();
@@ -224,7 +224,7 @@ void Gym::YogaRoom::startClass(double time, std::string classType)
 
 void Gym::YogaRoom::lighting(bool lightsOn)
 {
-    if (lightsOn == true)
+    if (lightsOn)
     {
         std::cout << "Please turn off before leaving" << std::endl;
     }
@@ -241,7 +241,7 @@ int Gym::provideEquipment(std::string currentMembers)
 
 int Gym::provideWorkputSpace(Gym::YogaRoom yogaRoom, int numMembers = 8)
 {
-    if (yogaRoom.isReserved == true && numMembers > 10)
+    if (yogaRoom.isReserved && numMembers > 10)
     {
         std::cout << "Room is full" << std::endl;
     }
@@ -250,7 +250,7 @@ int Gym::provideWorkputSpace(Gym::YogaRoom yogaRoom, int numMembers = 8)
 
 void Gym::provideTrainingProgram(bool isPilates, bool isYoga, std::string trainerName)
 {
-    if (isPilates == true || isYoga == true)
+    if (isPilates || isYoga)
     {
         std::cin >> trainerName;
     }
@@ -279,7 +279,7 @@ struct GasStation
         void cureHunger(bool stillHungry = true);
     };
 
-    int provideGas(double gallonsPaidFor, bool isDeisel);
+    double provideGas(double gallonsPaidFor, bool isDeisel);
     void chargeCard(SnackFood bagChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack);
     void allowParking(bool isCustomer, double carSize, bool canUseForGym);
 
@@ -314,13 +314,13 @@ void GasStation::SnackFood::cureHunger(bool stillHungry)
     }
 }
 
-int GasStation::provideGas(double gallonsPaidFor, bool isDeisel)
+double GasStation::provideGas(double gallonsPaidFor, bool isDeisel)
 {
-    if (isDeisel == true)
+    if (isDeisel)
     {
         totalGallonsGas = gallonsPaidFor * 1.3;
     }
-    return static_cast<int>(totalGallonsGas);
+    return totalGallonsGas;
 }
 
 void GasStation::chargeCard(SnackFood myChips, bool isCredit, int zipCode, bool addCarwash, bool canAffordSnack)
@@ -328,7 +328,7 @@ void GasStation::chargeCard(SnackFood myChips, bool isCredit, int zipCode, bool 
     isCredit = true;
     addCarwash = true;
     zipCode = 70448;
-    if (canAffordSnack == true)
+    if (canAffordSnack)
     {
         myChips.cureHunger(true);
     }
@@ -337,7 +337,7 @@ void GasStation::chargeCard(SnackFood myChips, bool isCredit, int zipCode, bool 
 void GasStation::allowParking(bool isCustomer, double carSize, bool canUseForGym)
 {
     carSize = 82.4;
-    if (isCustomer == true && canUseForGym == true)
+    if (isCustomer && canUseForGym)
     {
         Gym::YogaRoom unusedYogaRoom;
         myGym.provideWorkputSpace(unusedYogaRoom, 2);
@@ -386,7 +386,7 @@ void CoatRack::Hat::sitOnHead(float howLongToWear, bool doesFit)
 
 void CoatRack::Hat::containsRabbit(bool isRabbitInHat)
 {
-    if (isRabbitInHat == true)
+    if (isRabbitInHat)
     {
         sitOnHead(0.0f, false);
     }
@@ -402,7 +402,7 @@ void CoatRack::Hat::provideStyle(bool matchesJacket)
 
 float CoatRack::mountRack(double wallHeight, bool addedSupport)
 {
-    if (addedSupport == true)
+    if (addedSupport)
     {
         wallHeight *= rackWidth;
     }
@@ -440,7 +440,7 @@ struct RemoteControl
 
 int RemoteControl::changeChannel(int channel)
 {
-    if (leftRightButtons == true)
+    if (leftRightButtons)
     {
         channel += 1;
     }
@@ -458,7 +458,7 @@ void RemoteControl::switchMode(bool hdmi)
 
 int RemoteControl::turnOff(bool isButtonDown)
 {
-    if (onOffSwitch == 1 && isButtonDown == true)
+    if (onOffSwitch == 1 && isButtonDown)
     {
         changeChannel(false);
     }
@@ -596,7 +596,7 @@ float Preamp::distortSignal(float level, bool allowClip)
 
 struct MasterControls
 {
-    double volLevel = 9.2;
+    float volLevel = 9.2f;
     double panSetting = -3.4;
     bool meterActive = true;
     float volRangeInDb = 24.0f;
@@ -611,26 +611,26 @@ void MasterControls::setMainVolume(float level, float maxRange)
 {
     if (maxRange > 12.0f)
     {
-        level = static_cast<float>(volLevel) - 1.0f;
+        level = volLevel - 1.0f;
     }
 }
 
 void MasterControls::setHeadphoneVolume(float level, bool isActive)
 {
-    if (isActive == true)
+    if (isActive)
     {
-        level = static_cast<float>(volLevel);
+        level = volLevel;
     }
 }
 
 void MasterControls::indicateLevel(bool isActive, bool isClipping)
 {
-    if (isActive == true)
+    if (isActive)
     {
         meterActive = true;
     }
     
-    if (isClipping == true)
+    if (isClipping)
     {
         setMainVolume(12.0f, 24.0f);
     }
@@ -668,7 +668,7 @@ void AuxSend::acceptAudioIn(bool isConnected, bool isMono)
 {
     isMono = monoStereoOption;
 
-    if (monoStereoOption == true && isConnected == true)
+    if (monoStereoOption && isConnected)
     {
         sendToFx(1);
     }
@@ -707,7 +707,7 @@ float MixingConsole::adjustVol(float volLevel, float maxVolRange)
 
 int MixingConsole::outToSpeakers(int numCables, bool isConnected)
 {
-    if (isConnected == true)
+    if (isConnected)
     {
         channel.acceptAudioInput(true, true);
         numCables = 1;
@@ -720,7 +720,7 @@ void MixingConsole::indicateLevel(bool isActive, bool isClipping)
 {
     isActive = true;
 
-    if (isClipping == true)
+    if (isClipping)
     {
         main.indicateLevel(true, true);
     }
