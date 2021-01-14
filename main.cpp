@@ -56,6 +56,7 @@ struct Gym
         void reserveRoom(int numMembers = 6);
         void startClass(double time = 3.15, std::string classType = "Pilates");
         void lighting(bool lightsOn = true);
+        YogaRoom();
     };
 
     void provideEquipmentList();
@@ -74,6 +75,16 @@ Gym::Gym()
     numWeightBenches = 3;
     numProtienBars = 21;
     membershipList = "Todd, John, Lisa";
+}
+
+Gym::YogaRoom::YogaRoom() :
+    isReserved(false),
+    floorWidthSqFt(0.f),
+    floorLengthSqFt(0.f),
+    numMembersUsing(0),
+    numYogaMats(0)
+{
+
 }
 
 void Gym::YogaRoom::reserveRoom(int numMembers)
@@ -152,6 +163,7 @@ struct GasStation
         int provideEnergy(int numCalories, int numGramsProtien);
         float provideFlavor(bool tastesGood = false);
         void cureHunger(bool stillHungry = true);
+        SnackFood();
     };
 
     double provideGas(double gallonsPaidFor, bool isDeisel);
@@ -171,6 +183,16 @@ GasStation::GasStation()
     numEnergyDrinks = 31;
 }
 
+GasStation::SnackFood::SnackFood() :
+    snackType("snacks"),
+    price(0.f),
+    weightInOunces(0.0),
+    numServings(0),
+    numCarbsInGrams(0)
+{
+
+}
+
 int GasStation::SnackFood::provideEnergy(int numCalories, int numGramsProtien)
 {
     if (snackType == "BeefJerky")
@@ -178,7 +200,7 @@ int GasStation::SnackFood::provideEnergy(int numCalories, int numGramsProtien)
         numCalories = 82;
         numGramsProtien = 7;
     }
-    return 0;
+     return 0;
 }
 
 float GasStation::SnackFood::provideFlavor(bool tastesGood)
@@ -190,12 +212,13 @@ float GasStation::SnackFood::provideFlavor(bool tastesGood)
     return 0;
 }
 
-void GasStation::SnackFood::cureHunger(bool stillHungry)
+void GasStation::SnackFood::cureHunger(bool notHungry)
 {
     if (numServings < 2)
     {
-        stillHungry = true;
+        notHungry = true;
     }
+    std::cout << "Are you getting another candy bar? " << (notHungry == true ? "no" : "yes")  << std::endl;
 }
 
 double GasStation::provideGas(double gallonsPaidFor, bool isDeisel)
@@ -252,6 +275,8 @@ struct CoatRack
         void sitOnHead(float howLongToWear, bool doesFit);
         void containsRabbit(bool isRabbitInHat = true);
         void provideStyle(bool matchesJacket);
+
+        Hat();
     };
 
     float mountRack(double wallHeight, bool addedSupport);
@@ -271,6 +296,16 @@ CoatRack::CoatRack()
     numHooks = 12;   
 }
 
+CoatRack::Hat::Hat() :
+size(0),
+diameter(0.f),
+color("blue"),
+feather(false),
+material("straw")
+{
+    
+}
+
 void CoatRack::Hat::sitOnHead(float howLongToWear, bool doesFit)
 {
     if (diameter > 2.4f)
@@ -286,6 +321,7 @@ void CoatRack::Hat::containsRabbit(bool isRabbitInHat)
     {
         sitOnHead(0.0f, false);
     }
+    std::cout << "Is this some kind of magic trick? " << (isRabbitInHat == true ? "yes" : "no") << std::endl;
 }
 
 void CoatRack::Hat::provideStyle(bool matchesJacket)
@@ -710,13 +746,17 @@ int main()
     //==============================================================
 
     GasStation cornerStore;
+    GasStation::SnackFood snack;
     cornerStore.chargeCard();
+    snack.cureHunger(true);
 
     std::cout << "Can we afford a snack too? " << (cornerStore.totalGallonsGas < 20.0 ? "Yes" : "No") << "\n";
 
     //==============================================================
 
     CoatRack rack;
+    CoatRack::Hat hat;
+    hat.containsRabbit(true);
 
     //==============================================================
 
