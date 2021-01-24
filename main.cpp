@@ -488,14 +488,14 @@ void ChannelStrip::acceptAudioInput(bool isConnected, bool isMono)
 
 float ChannelStrip::addChannel(int numChannels)
 {
+    int channel = 1;
+
     for (int i = 0; i < numChannels; i++)
     {
-        int channel = 0;
-
-        if (channel > 1)
+        if (channel >= 1)
         {
             numChannels = channel += 1;
-            return numChannels;
+            break;
         }
     }
     return numChannels;
@@ -558,7 +558,7 @@ int Equalizer::addBand()
 {
     while(numBands < 8)
     {  
-        return numBands + 1;        
+        numBands += 1;        
     }
     return numBands;
 }
@@ -622,10 +622,9 @@ float Preamp::distortSignal(float level, bool allowClip)
 float Preamp::cutMud(float level)
 {
     Equalizer eq;
-    while (eq.numBands >= 2 && level > 5)
+    while (eq.numBands >= 2 && level >= 4)
     {
         level -= 3.0f;  
-        return level;
     }
     return level;
 }
