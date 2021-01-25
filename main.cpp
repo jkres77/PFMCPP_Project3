@@ -36,14 +36,14 @@ struct Bar
 };
 struct Foo
 {
-    Bar scopeLifetimeFunc( int threshold, int startingVal ) //3), 4c) 
+    Bar scopeLifetimeFunc( int threshold, int startingVal ) //1), 2c) 
     {
-        Bar bar(startingVal);                //4a)
-        while( bar.num < threshold )         //4a) 
+        Bar bar(startingVal);                //2a)
+        while( bar.num < threshold )         //2a) 
         { 
-            bar.num += 1;                    //4a)
+            bar.num += 1;                    //2a)
             
-            if( bar.num >= threshold )       //4b)
+            if( bar.num >= threshold )       //2b)
                 return bar;
         }
         
@@ -54,9 +54,9 @@ struct Foo
 int main()
 {
     Foo foo;
-    auto bar = foo.scopeLifetimeFunc(3, 1);        //5) 
+    auto bar = foo.scopeLifetimeFunc(3, 1);        //3) 
     
-    std::cout << "bar.num: " << bar.num << std::endl;     //6) 
+    std::cout << "bar.num: " << bar.num << std::endl;     //4) 
     return 0;
 }
 }
@@ -450,6 +450,7 @@ struct ChannelStrip
     void makeAdjustments(float volume, float panning, bool mute);
     void acceptMicInput(bool isConnected);
     void acceptAudioInput(bool isConnected, bool isMono);
+    float addChannel(int numChannels);
 };
 
 ChannelStrip::ChannelStrip()
@@ -485,6 +486,18 @@ void ChannelStrip::acceptAudioInput(bool isConnected, bool isMono)
     std::cout << "How loud can it go? " << maxGainRange << "db" << std::endl;
 }
 
+float ChannelStrip::addChannel(int numChannels)
+{
+    int channel = 1;
+
+    for (int i = 0; i < numChannels; i++)
+    {
+        ++channel;
+        std::cout << "adding channel num: " << channel << std::endl;
+    }
+    return channel;
+}
+
 //============================================================
 
 struct Equalizer
@@ -498,6 +511,7 @@ struct Equalizer
     double boostBass(float level, float freqRange);
     double cutHiFreq(float amountToCut, float freqRange);
     double adjustWidth(double level);
+    int addBand();
 };
 
 Equalizer::Equalizer()
@@ -537,6 +551,15 @@ double Equalizer::adjustWidth(double level)
     return level;
 }
 
+int Equalizer::addBand()
+{
+    while(numBands < 8)
+    {  
+        numBands += 1;        
+    }
+    return numBands;
+}
+
 //============================================================
 
 struct Preamp
@@ -550,6 +573,7 @@ struct Preamp
     float boostAmp(float level);
     float trimAmp(float level);
     float distortSignal(float level, bool allowClip = false);
+    float cutMud(float level);
 };
 
 Preamp::Preamp()
@@ -589,6 +613,16 @@ float Preamp::distortSignal(float level, bool allowClip)
         level = gainIncrease;
     }
 
+    return level;
+}
+
+float Preamp::cutMud(float level)
+{
+    Equalizer eq;
+    while (eq.numBands >= 2 && level >= 4)
+    {
+        level -= 3.0f;  
+    }
     return level;
 }
 
@@ -804,13 +838,25 @@ int main()
 
     std::cout << "Should I turn it down? " << (channel.numInputs == 1 ? "No" : "Yes") << "\n";
 
+    auto chanCount = channel.addChannel(4);
+
+    std::cout << "Number of channels: " << chanCount << std::endl;
+
     //==============================================================
 
     Equalizer eq;
 
+    auto bands = eq.addBand();
+
+    std::cout << "Number of bands: " << bands << std::endl;
+
     //==============================================================
 
     Preamp pre;
+
+    auto cut = pre.cutMud(10.0f);
+
+    std::cout << "How much mid reduction: " << cut << std::endl;
 
     //==============================================================
 
