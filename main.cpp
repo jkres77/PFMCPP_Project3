@@ -492,13 +492,10 @@ float ChannelStrip::addChannel(int numChannels)
 
     for (int i = 0; i < numChannels; i++)
     {
-        if (channel >= 1)
-        {
-            numChannels = channel += 1;
-            break;
-        }
+        ++channel;
+        std::cout << "adding channel num: " << channel << std::endl;
     }
-    return numChannels;
+    return channel;
 }
 
 //============================================================
@@ -841,7 +838,7 @@ int main()
 
     std::cout << "Should I turn it down? " << (channel.numInputs == 1 ? "No" : "Yes") << "\n";
 
-    auto chanCount = channel.addChannel(1);
+    auto chanCount = channel.addChannel(4);
 
     std::cout << "Number of channels: " << chanCount << std::endl;
 
